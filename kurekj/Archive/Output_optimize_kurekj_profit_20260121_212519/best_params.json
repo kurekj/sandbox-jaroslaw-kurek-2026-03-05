@@ -1,0 +1,61 @@
+{
+  "best_params": {
+    "gamma": 1.5175077211915264,
+    "mu": 0.0002533220593738003,
+    "nu": 0.0028024976909698123,
+    "rho": 0.1085462132848281,
+    "delta": 3.0,
+    "lambda_": 1.718453027861662
+  },
+  "best_p_h": 0.210822899607082,
+  "objective": "sum_expected_revenue_proxy",
+  "topk": 3,
+  "position_weight_mode": "dcg",
+  "profit_prob_col": "q_api",
+  "billable_cap_threshold": 1.0,
+  "sampling": {
+    "random_sampling": "lhs",
+    "n_random_trials": 2000,
+    "n_local_seeds": 8,
+    "local_rel_std_schedule": [
+      0.25,
+      0.12,
+      0.06
+    ],
+    "local_trials_per_seed": 60,
+    "train_sample_requests": 5000,
+    "valid_sample_requests": 2000,
+    "sample_objective_valid_weight": 0.35,
+    "top_n_reeval": 120
+  },
+  "profit_stabilization": {
+    "soft_billable": false,
+    "winsorize_effective_lead_price_q": null
+  },
+  "summary": [
+    {
+      "algo": "baseline(q_api sort)",
+      "train_profit": 68771.56009622214,
+      "valid_profit": 16963.79674008926,
+      "all_profit": 85735.35683631127,
+      "lift_vs_baseline_all_pct": NaN,
+      "lift_vs_current_all_pct": NaN
+    },
+    {
+      "algo": "current(params)",
+      "train_profit": 102739.77063440127,
+      "valid_profit": 24545.643615232708,
+      "all_profit": 127285.41424963396,
+      "lift_vs_baseline_all_pct": 48.46315329701305,
+      "lift_vs_current_all_pct": NaN
+    },
+    {
+      "algo": "best(found)",
+      "train_profit": 310693.17244906665,
+      "valid_profit": 76340.87310305776,
+      "all_profit": 387034.04555212584,
+      "lift_vs_baseline_all_pct": 351.42874519209596,
+      "lift_vs_current_all_pct": 204.06786813221913
+    }
+  ]
+}

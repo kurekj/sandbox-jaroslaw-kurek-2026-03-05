@@ -1,0 +1,5 @@
+2025-11-11 11:48:34,782 [INFO] Logi będą zapisywane do: /data/home/kurekj/sandbox-jaroslaw-kurek/src/v2/autoencoder/optuna_train_logs/optuna_train_logs_2025-11-11_11-48-34.log
+2025-11-11 11:48:34,782 [INFO] Katalog logów: /data/home/kurekj/sandbox-jaroslaw-kurek/src/v2/autoencoder/optuna_train_logs
+2025-11-11 11:48:34,782 [INFO] Metoda startowa multiprocessing: spawn
+2025-11-11 11:48:34,782 [INFO] Loading data...
+2025-11-11 11:48:40,359 [INFO] Data loaded.

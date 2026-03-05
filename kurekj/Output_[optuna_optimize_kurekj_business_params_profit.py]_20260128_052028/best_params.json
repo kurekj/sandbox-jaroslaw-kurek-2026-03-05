@@ -1,0 +1,100 @@
+{
+  "settings": {
+    "RECS_PATH": "recommendations_output.parquet",
+    "OFFERS_OPM_DATA_PATH": "daily_snapshot_offer_performance_metrics_data_20260120_174227.xlsx",
+    "TOPK": 3,
+    "PROFIT_PROB_COL": "q_api",
+    "BILLABLE_CAP_THRESHOLD": 1.0,
+    "POSITION_WEIGHT_MODE": "dcg",
+    "CUSTOM_POSITION_WEIGHTS": {
+      "1": 1.0,
+      "2": 0.7,
+      "3": 0.5
+    },
+    "SEED": 42,
+    "TRAIN_FRACTION": 0.8,
+    "MAX_REQUESTS": null,
+    "N_TRIALS": 200,
+    "TIMEOUT_SECONDS": null,
+    "N_STARTUP_TRIALS": 30,
+    "USE_PRUNING": true,
+    "BOUNDS": {
+      "gamma": [
+        0.01,
+        2.5
+      ],
+      "mu": [
+        -3.0,
+        3.0
+      ],
+      "nu": [
+        0.0,
+        6.0
+      ],
+      "rho": [
+        -3.0,
+        3.0
+      ],
+      "delta": [
+        0.0,
+        6.0
+      ],
+      "lambda_": [
+        0.0,
+        6.0
+      ],
+      "p_h": [
+        -1.0,
+        1.0
+      ]
+    },
+    "DIVERSITY_WEIGHTS": {
+      "w_inv": 1.0,
+      "w_dev": 0.5,
+      "w_city": 0.25
+    }
+  },
+  "data": {
+    "requests_total": 4219,
+    "requests_train": 3375,
+    "requests_valid": 844,
+    "position_weights": [
+      1.0,
+      0.6309297535714575,
+      0.5
+    ]
+  },
+  "reference": {
+    "baseline_train_total": 68771.560096222,
+    "baseline_valid_total": 16963.796740089252,
+    "pg_train_total": 224999.96081819144,
+    "pg_valid_total": 56515.736654014574,
+    "baseline_train_avg": 20.376758547028743,
+    "baseline_valid_avg": 20.099285237072575,
+    "pg_train_avg": 66.66665505724191,
+    "pg_valid_avg": 66.96177328674713
+  },
+  "best": {
+    "trial_number": 49,
+    "valid_avg": 99.42542864874852,
+    "train_avg": 98.9594283003498,
+    "train_total": 333988.0705136806,
+    "valid_total": 83915.06177954376,
+    "params": {
+      "gamma": 0.11468369544939408,
+      "mu": 1.8182539640648097,
+      "nu": 0.5627955252615593,
+      "rho": 0.7753227153036086,
+      "delta": 1.5410895563662006,
+      "lambda_": 1.620422743819062,
+      "p_h": 0.04720659167341895
+    },
+    "user_attrs": {
+      "train_total_revenue": 333988.0705136806,
+      "train_avg_revenue": 98.9594283003498,
+      "valid_total_revenue": 83915.06177954376,
+      "valid_avg_revenue": 99.42542864874852,
+      "pacing_term": 1.0366003428364639
+    }
+  }
+}

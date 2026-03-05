@@ -1,0 +1,34 @@
+x-api: &api
+  build:
+    context: ..
+    dockerfile: containers/ae_api.Dockerfile
+  volumes:
+    - ../config/.env:/app/config/.env:ro
+    - ../models/epoch=34-val_loss=0.0858.ckpt:/app/models/epoch=34-val_loss=0.0858.ckpt:ro
+  restart: unless-stopped
+  extra_hosts:
+    - "locallocalhost:host-gateway"
+  depends_on:
+    - redis
+
+services:
+  redis:
+    image: redis/redis-stack-server:latest
+    volumes:
+      - redis_data:/data
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+
+
+  api:
+    <<: *api
+    ports:
+      - "8001:8000"
+
+  api_worker:
+    <<: *api
+    command: celery -A src.v2.api.tasks worker --autoscale=2,0
+
+volumes:
+  redis_data:

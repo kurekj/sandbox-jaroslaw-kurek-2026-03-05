@@ -1,0 +1,42 @@
+{
+  "best_params": {
+    "gamma": 0.14663364280183036,
+    "mu": 0.0021692066741341295,
+    "nu": 0.1480717662477614,
+    "rho": 0.22356735973581185,
+    "delta": 5.0,
+    "lambda_": 3.954397222022655
+  },
+  "best_p_h": 0.056581138033371614,
+  "objective": "sum_expected_revenue_proxy",
+  "topk": 3,
+  "position_weight_mode": "dcg",
+  "profit_prob_col": "q_api",
+  "billable_cap_threshold": 1.0,
+  "summary": [
+    {
+      "algo": "baseline(q_api sort)",
+      "train_profit": 68771.56009622214,
+      "valid_profit": 16963.79674008926,
+      "all_profit": 85735.35683631127,
+      "lift_vs_baseline_all_pct": NaN,
+      "lift_vs_current_all_pct": NaN
+    },
+    {
+      "algo": "current(params)",
+      "train_profit": 102739.77063440127,
+      "valid_profit": 24545.643615232708,
+      "all_profit": 127285.41424963396,
+      "lift_vs_baseline_all_pct": 48.46315329701305,
+      "lift_vs_current_all_pct": NaN
+    },
+    {
+      "algo": "best(found)",
+      "train_profit": 185040.54201617042,
+      "valid_profit": 46280.900381487736,
+      "all_profit": 231321.44239765772,
+      "lift_vs_baseline_all_pct": 169.8086891261258,
+      "lift_vs_current_all_pct": 81.73444597822248
+    }
+  ]
+}

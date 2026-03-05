@@ -1,0 +1,198 @@
+[project]
+name = "web-recommendation-rp"
+version = "2025.07.21.6"
+description = ""
+authors = [
+  { name = "Artur Grudkowski", email = "a.grudkowski@rynekpierwotny.pl" },
+  { name = "Bartłomiej Kanabus", email = "a.kanabus@rynekpierwotny.pl" },
+]
+readme = "README.md"
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry]
+package-mode = false
+
+# TODO: Old requirements, after migration to v2 remove this section
+# [tool.poetry.group.v1.dependencies]
+# python = "^3.10"
+# celery = { extras = ["redis"], version = "^5.3.4" }
+# flask = "^2.3.3"
+# flask-sqlalchemy = "^3.0.5"
+# geoalchemy2 = "^0.14.1"
+# itsdangerous = "^2.1.2"
+# jinja2 = "^3.1.2"
+# joblib = "^1.3.2"
+# numpy = "^1.25.2"
+# pandas = "^1.3.5"
+# psycopg2 = "^2.9.7"
+# requests = "^2.31.0"
+# scikit-learn = "^1.3.0"
+# scipy = "^1.7.3"
+# sentry-sdk = { extras = ["flask"], version = "^1.30.0" }
+# sqlalchemy = "^1.4"
+# threadpoolctl = "^3.2.0"
+# uwsgi = "^2.0.22"
+# werkzeug = "^2.3.7"
+# filelock = "^3.13.1"
+
+[tool.poetry.dependencies]
+python = ">3.10,<4.0"
+pandas = "^2.2.3"
+# scikit-learn = "^1.6.1"
+mlflow = { version = "^2.20.2", extras = ["auth"] }
+psutil = "^7.0.0"
+pynvml = "^12.0.0"
+psycopg = { extras = ["binary", "pool"], version = "^3.2.4" }
+rich = "^13.9.4"
+tqdm = "^4.67.1"
+pydantic = "^2.10.6"
+python-dotenv = "^1.0.1"
+pydantic-settings = "^2.7.1"
+torch = "2.2.2"
+safetensors = "^0.5.3"
+torchmetrics = "^1.6.2"
+lightning = "^2.5.0.post0"
+optuna = "^4.2.1"
+optuna-integration = "^4.2.1"
+hdbscan = "^0.8.40"
+swifter = {extras = ["groupby", "notebook"], version = "^1.4.0"}
+loguru = "^0.7.3"
+joblib = "^1.4.2"
+numpy = "<2"
+fastapi = "^0.115.12"
+uvicorn = {extras = ["standard"], version = "^0.34.0"}
+toml = "^0.10.2"
+python-multipart = "^0.0.20"
+httpx = "^0.28.1"
+celery = "^5.5.3"
+redis = "^6.2.0"
+aiocache = {extras = ["redis"], version = "^0.12.3"}
+
+[tool.poetry.group.training.dependencies]
+optuna-dashboard = "^0.17.0"
+plotly = "^6.0.0"
+dash = "^3.0.0"
+dash-bootstrap-components = "^2.0.0"
+
+
+[tool.poetry.group.dev.dependencies]
+ruff = "^0.9.6"
+mypy = "^1.15.0"
+jupyter = "^1.1.1"
+ipykernel = "^6.29.5"
+pre-commit = "^4.1.0"
+pytest = "^8.3.4"
+pandas-stubs = "^2.2.3.241126"
+types-seaborn = "^0.13.2.20250111"
+types-tqdm = "^4.67.0.20250319"
+types-toml = "^0.10.8.20240310"
+pytest-asyncio = "^0.26.0"
+bumpver = "^2024.1130"
+
+
+[tool.poetry.group.plots.dependencies]
+seaborn = "^0.13.2"
+
+[tool.ruff]
+# Exclude a variety of commonly ignored directories.
+exclude = [
+  ".bzr",
+  ".direnv",
+  ".eggs",
+  ".git",
+  ".git-rewrite",
+  ".hg",
+  ".mypy_cache",
+  ".nox",
+  ".pants.d",
+  ".pytype",
+  ".ruff_cache",
+  ".svn",
+  ".tox",
+  ".venv",
+  "__pypackages__",
+  "_build",
+  "buck-out",
+  "build",
+  "dist",
+  "node_modules",
+  "venv",
+  "src/v1",
+]
+
+# Same as Black.
+line-length = 120
+indent-width = 4
+
+# Assume Python 3.10
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "Q", "I"]
+ignore = []
+
+# Allow fix for all enabled rules (when `--fix`) is provided.
+fixable = ["ALL"]
+unfixable = []
+
+# Allow unused variables when underscore-prefixed.
+dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
+
+[tool.ruff.lint.pycodestyle]
+max-line-length = 120
+max-doc-length = 120
+
+[tool.ruff.format]
+# Like Black, use double quotes for strings.
+quote-style = "double"
+
+# Like Black, indent with spaces, rather than tabs.
+indent-style = "space"
+
+# Like Black, respect magic trailing commas.
+skip-magic-trailing-comma = false
+
+# Like Black, automatically detect the appropriate line ending.
+line-ending = "auto"
+
+[tool.mypy]
+plugins = ["pydantic.mypy", "numpy.typing.mypy_plugin"]
+
+exclude = ["src/v1"]
+
+strict = true
+follow_imports = "silent"
+warn_redundant_casts = true
+warn_unused_ignores = false
+disallow_any_generics = true
+check_untyped_defs = true
+no_implicit_reexport = true
+
+# for strict mypy: (this is the tricky one :-))
+disallow_untyped_defs = true
+
+[tool.pydantic-mypy]
+init_forbid_extra = true
+init_typed = true
+warn_required_dynamic_aliases = true
+
+[tool.mypy-pandas]
+disable_error_code = ["missing-type-parameters"]
+
+[tool.bumpver]
+current_version = "2025.07.21.6"
+version_pattern = "YYYY.0M.0D[.INC0[.PYTAGNUM]]"
+commit_message = "chore: bump version from {old_version} to {new_version}"
+commit = true
+tag = true
+push = false
+
+[tool.bumpver.file_patterns]
+"pyproject.toml" = [
+    'current_version = "{version}"',
+    'version = "{version}"',
+]

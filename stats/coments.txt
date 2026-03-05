@@ -1,0 +1,127 @@
+Jak coś to tam jest zaszyty mechanizm że bierzemy najnowszą rekomendację per user - można to ewentualnie zdjąć/zmienić.
+
+
+Różnice wynikają **dokładnie** z tego „zaszytego mechanizmu” *„bierzemy najnowszą rekomendację per user”* — u Ciebie to jest CTE `per_request_latest`.
+
+### Co się dzieje w Twoim query
+
+Masz etap:
+
+```sql
+per_request_latest AS (
+  SELECT *
+  FROM (
+    SELECT p.*,
+           row_number() OVER (PARTITION BY p.uuid ORDER BY p.create_date DESC) AS rn_uuid
+    FROM per_request p
+  ) x
+  WHERE rn_uuid = 1
+)
+```
+
+To oznacza:
+
+* dla każdego `uuid` wybierasz **jedną** (najnowszą) rekomendację w **całym** zakresie dat, który podałeś w WHERE,
+* a potem dopiero liczysz rekordy per dzień po `create_date` tej wybranej (najnowszej) rekomendacji.
+
+### Dlaczego to daje inne wyniki między (1) i (2)
+
+#### Query (1): zakres tylko do 2025-12-08
+
+Dla danego `uuid` „najnowsza” rekomendacja **musi** wypaść gdzieś między 2025-12-01 a 2025-12-08, więc:
+
+* wiele `uuid` ma “latest” właśnie w tych dniach,
+* stąd duże wartości w tych dniach.
+
+#### Query (2): zakres aż do 2026-02-20
+
+Dla tego samego `uuid` „najnowsza” rekomendacja może być np. w lutym 2026, więc:
+
+* ten `uuid` **przestaje** się liczyć w grudniu 2025,
+* bo `per_request_latest` wybiera mu rekord z 2026-02-xx,
+* a grudniowe requesty dla tego `uuid` zostają odcięte.
+
+Efekt uboczny: w query (2) grudzień „chudnie”, a późniejsze dni „puchną” — bo **przepinasz użytkowników na ich najnowszą datę w całym oknie**.
+
+To też tłumaczy czemu u Ciebie w (2) np. 2025-12-05..07 spadają dramatycznie (1185/827/1783), mimo że w (1) były ogromne — w (2) większość tych `uuid` miała później kolejne rekomendacje i „latest” wylądował w styczniu/lutym.
+
+---
+
+## Druga (mniejsza) różnica: inne okno czasowe na starcie
+
+Masz też różne starty:
+
+1. `2025-12-01 18:02:00`
+2. `2025-12-01 12:02:00`
+
+To może wpłynąć na **dzień 2025-12-01** (i trochę na 2025-12-02 zależnie od stref/castów), ale to nie wyjaśnia gigantycznych zmian. Główna przyczyna to `per_request_latest`.
+
+---
+
+# Jak to naprawić (zależnie od intencji)
+
+## A) Chcesz liczyć „wszystkie rekomendacje / requesty” w oknie
+
+To **usuń** `per_request_latest` i pracuj na `per_request`.
+
+Czyli `expanded` ma brać z `per_request`, nie z `per_request_latest`.
+
+## B) Chcesz „latest per user”, ale **per dzień**
+
+Czyli: dla każdego dnia i uuid wybierz najnowszy rekord w tym dniu:
+
+```sql
+per_request_latest AS (
+  SELECT *
+  FROM (
+    SELECT p.*,
+           row_number() OVER (
+             PARTITION BY p.uuid, date_trunc('day', p.create_date)
+             ORDER BY p.create_date DESC
+           ) AS rn_uuid_day
+    FROM per_request p
+  ) x
+  WHERE rn_uuid_day = 1
+)
+```
+
+Wtedy grudzień w query (2) nie “znika”, bo grudniowy „latest per day” nadal zostaje grudniowy.
+
+## C) Chcesz „latest per user”, ale **liczyć dzień requesta, a nie dzień latest**
+
+To jest subtelne: jeśli chcesz mieć tylko jeden rekord per uuid (globalnie), ale raportować go w dniu “pierwszego pojawienia się” albo “pierwszego requesta”, to musisz mieć osobne pole z datą referencyjną (np. min(create_date) per uuid) i po tym grupować. Inaczej zawsze grupujesz po dacie latest.
+
+---
+
+# Szybki test, który Ci to udowodni na danych
+
+Sprawdź ile `uuid` ma „latest” po 2025-12-08 w szerokim oknie:
+
+```sql
+SELECT
+  count(*) AS uuids_total,
+  count(*) FILTER (WHERE create_date > '2025-12-08 12:02:00'::timestamp) AS uuids_latest_after_dec8
+FROM (
+  SELECT uuid, max(create_date) AS create_date
+  FROM per_request
+  GROUP BY 1
+) t;
+```
+
+Jeśli `uuids_latest_after_dec8` jest duże, to masz 100% potwierdzenia dlaczego grudzień w (2) spada.
+
+---
+
+# Uwaga techniczna (jeszcze jeden potencjalny niuans)
+
+W `row_number() OVER (PARTITION BY p.uuid ORDER BY p.create_date DESC)` jeśli zdarzą się **remisy create_date** dla tego samego uuid, wybór rekordu może być niedeterministyczny (raz wybierze taki, raz inny). Wtedy warto dodać tie-breaker, np. `request_id`:
+
+```sql
+row_number() OVER (PARTITION BY p.uuid ORDER BY p.create_date DESC, p.request_id DESC)
+```
+
+To nie jest główna przyczyna Twoich różnic, ale potrafi robić “dziwne” rozjazdy w małej skali.
+
+---
+
+Jeśli powiesz mi, jaka jest biznesowa definicja metryki (np. *„ile rekomendowanych ofert pokazaliśmy dziennie”* vs *„ilu użytkowników ma najnowszą rekomendację w danym dniu”*), to od razu podam najwłaściwszą wersję query (A/B/C) w finalnej postaci.

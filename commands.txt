@@ -1,0 +1,9 @@
+python -m venv .venv
+.venv\Scripts\activate.bat
+
+pip install poetry
+python.exe -m pip install --upgrade pip
+poetry install --with dev,training,plots
+pip install openpyxl
+pip install xlsxwriter
+

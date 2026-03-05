@@ -1,0 +1,19 @@
+2025-11-10 01:11:01,968 [INFO] Logi będą zapisywane do: /data/home/kurekj/sandbox-jaroslaw-kurek/src/v2/autoencoder/optuna_train_logs/optuna_train_logs_2025-11-10_01-11-01.log
+2025-11-10 01:11:01,969 [INFO] Katalog logów: /data/home/kurekj/sandbox-jaroslaw-kurek/src/v2/autoencoder/optuna_train_logs
+2025-11-10 01:11:01,969 [INFO] Metoda startowa multiprocessing: spawn
+2025-11-10 01:11:01,969 [INFO] Loading data...
+2025-11-10 01:11:07,363 [INFO] Data loaded.
+2025-11-10 01:56:18,709 [INFO] Total optimization time: 45.18 minutes
+2025-11-10 01:56:18,727 [INFO] Całkowity czas skryptu: 45.19 minut
+2025-11-10 01:56:18,842 [INFO] Zapisano wyniki i podsumowanie do logs/run_2025-11-10_01-11-01/optuna_study_results.xlsx
+2025-11-10 01:56:18,842 [INFO] Best trial:
+2025-11-10 01:56:18,848 [INFO]   Value: 0.07625031471252441
+2025-11-10 01:56:18,848 [INFO]   Params: 
+2025-11-10 01:56:18,848 [INFO]     learning_rate: 0.0013317207229286549
+2025-11-10 01:56:18,848 [INFO]     weight_decay: 1.282190231112141e-07
+2025-11-10 01:56:18,848 [INFO]     batch_size: 512
+2025-11-10 01:56:18,848 [INFO]     dropout: 0.0038253737996481116
+2025-11-10 01:56:18,848 [INFO]     leaky_relu_slope: 0.19520051461296029
+2025-11-10 01:56:18,854 [INFO] Najlepszy trial ma numer: 22
+2025-11-10 01:56:18,854 [INFO] Ścieżka do katalogu najlepszego trialu: logs/run_2025-11-10_01-11-01/optuna_trial_22/version_0
+2025-11-10 01:56:19,352 [INFO] Zapisano krzywe uczenia do: logs/run_2025-11-10_01-11-01/best_trial_learning_curves.png
