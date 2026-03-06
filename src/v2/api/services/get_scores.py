@@ -206,6 +206,11 @@ async def get_scores_df_cached(df: pd.DataFrame, overwrite_cache: bool = False) 
 
 if __name__ == "__main__":
     import time
+    import sys
+    import asyncio
+
+    if sys.platform == "win32":
+        asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
 
     # Example usage
     df = pd.DataFrame(

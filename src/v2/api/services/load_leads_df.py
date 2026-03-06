@@ -49,7 +49,7 @@ left join rds2.regions_region rr on
 where
     aa.property_id is not null
     and uu2."uuid" is not null
-    and aa.create_date >= current_date - interval '120 days'
+    and aa.create_date >= current_date - interval '365 days'
     and rr.country = 1
     and aa.source NOT IN (203)
 """

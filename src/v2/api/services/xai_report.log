@@ -1,0 +1,45 @@
+2026-03-05 23:23:23.241 | INFO     | __main__:<module>:139 - Starting XAI scoring script...
+2026-03-05 23:23:23.242 | INFO     | src.v2.api.services.get_scores:get_scores_df:79 - Calculating scores for user_id <-> property_id pairs
+2026-03-05 23:23:23.243 | INFO     | src.v2.utils.cache_utils:get_or_create_cached_df:64 - Loading data for 2 items with caching
+2026-03-05 23:23:23.243 | DEBUG    | src.v2.utils.cache_utils:get_or_create_cached_df:76 - Retrieving 2 items from cache
+2026-03-05 23:23:23.246 | DEBUG    | src.v2.utils.sentinel_cache:multi_get:177 - Multi-get for 2 keys, found 0 values
+2026-03-05 23:23:23.246 | DEBUG    | src.v2.utils.cache_utils:get_or_create_cached_df:86 - Found 0 items in cache, need to load 2 items
+2026-03-05 23:30:31.065 | INFO     | __main__:<module>:157 - Starting XAI scoring script...
+2026-03-05 23:30:31.067 | INFO     | src.v2.api.services.get_scores:get_scores_df:79 - Calculating scores for user_id <-> property_id pairs
+2026-03-05 23:30:31.067 | INFO     | src.v2.utils.cache_utils:get_or_create_cached_df:64 - Loading data for 2 items with caching
+2026-03-05 23:30:31.068 | DEBUG    | src.v2.utils.cache_utils:get_or_create_cached_df:76 - Retrieving 2 items from cache
+2026-03-05 23:30:31.070 | DEBUG    | src.v2.utils.sentinel_cache:multi_get:177 - Multi-get for 2 keys, found 0 values
+2026-03-05 23:30:31.070 | DEBUG    | src.v2.utils.cache_utils:get_or_create_cached_df:86 - Found 0 items in cache, need to load 2 items
+2026-03-05 23:30:31.328 | INFO     | src.v2.api.services.get_scores:get_scores_df:84 - Loaded 0 leads for 2 users
+2026-03-05 23:30:31.328 | WARNING  | src.v2.api.services.get_scores:get_scores_df:88 - Leads dataframe is empty! Returning original df with NaN scores.
+2026-03-05 23:30:31.329 | WARNING  | __main__:get_scores_with_explanations:100 - No valid scores; returning empty list.
+2026-03-05 23:30:31.330 | INFO     | __main__:<module>:179 - XAI scoring completed; results saved to xai_explanations.json
+2026-03-05 23:31:03.258 | INFO     | __main__:<module>:157 - Starting XAI scoring script...
+2026-03-05 23:31:29.191 | INFO     | __main__:<module>:157 - Starting XAI scoring script...
+2026-03-05 23:31:29.193 | INFO     | src.v2.api.services.get_scores:get_scores_df:79 - Calculating scores for user_id <-> property_id pairs
+2026-03-05 23:31:29.193 | INFO     | src.v2.utils.cache_utils:get_or_create_cached_df:64 - Loading data for 2 items with caching
+2026-03-05 23:31:29.193 | DEBUG    | src.v2.utils.cache_utils:get_or_create_cached_df:76 - Retrieving 2 items from cache
+2026-03-05 23:31:29.196 | DEBUG    | src.v2.utils.sentinel_cache:multi_get:177 - Multi-get for 2 keys, found 2 values
+2026-03-05 23:31:29.198 | DEBUG    | src.v2.utils.cache_utils:get_or_create_cached_df:86 - Found 2 items in cache, need to load 0 items
+2026-03-05 23:31:29.199 | INFO     | src.v2.api.services.get_scores:get_scores_df:84 - Loaded 133 leads for 2 users
+2026-03-05 23:31:29.200 | INFO     | src.v2.utils.cache_utils:get_or_create_cached_df:64 - Loading data for 113 items with caching
+2026-03-05 23:31:29.200 | DEBUG    | src.v2.utils.cache_utils:get_or_create_cached_df:76 - Retrieving 113 items from cache
+2026-03-05 23:31:29.203 | DEBUG    | src.v2.utils.sentinel_cache:multi_get:177 - Multi-get for 113 keys, found 113 values
+2026-03-05 23:31:29.205 | DEBUG    | src.v2.utils.cache_utils:get_or_create_cached_df:86 - Found 113 items in cache, need to load 0 items
+2026-03-05 23:31:29.209 | INFO     | src.v2.utils.cache_utils:get_or_create_cached_df:64 - Loading data for 5 items with caching
+2026-03-05 23:31:29.209 | DEBUG    | src.v2.utils.cache_utils:get_or_create_cached_df:76 - Retrieving 5 items from cache
+2026-03-05 23:31:29.210 | DEBUG    | src.v2.utils.sentinel_cache:multi_get:177 - Multi-get for 5 keys, found 5 values
+2026-03-05 23:31:29.210 | DEBUG    | src.v2.utils.cache_utils:get_or_create_cached_df:86 - Found 5 items in cache, need to load 0 items
+2026-03-05 23:31:29.211 | INFO     | src.v2.api.services.get_scores:get_scores_df:94 - Loaded 113 leads properties and 5 scoring properties
+2026-03-05 23:31:29.212 | INFO     | src.v2.api.services.embed_properties:_align_feature_columns:68 - Provided feature columns (98): facilities_1,facilities_2,facilities_3,facilities_4,facilities_5,facilities_6,facilities_7,facilities_8,facilities_9,facilities_10,facilities_11,facilities_12,facilities_13,facilities_14,facilities_15,facilities_16,facilities_17,facilities_18,facilities_19,facilities_20,facilities_21,facilities_22,facilities_23,facilities_24,facilities_25,facilities_26,facilities_27,facilities_28,facilities_29,facilities_30,facilities_31,facilities_32,facilities_33,facilities_34,facilities_35,natural_sites_1,natural_sites_2,natural_sites_3,natural_sites_4,natural_sites_5,natural_sites_6,natural_sites_7,natural_sites_8,natural_sites_9,kitchen_type_1,kitchen_type_2,additional_area_type_1,additional_area_type_2,additional_area_type_3,additional_area_type_4,additional_area_type_5,additional_area_type_6,additional_area_type_7,additional_area_type_8,additional_area_type_9,additional_area_type_10,additional_area_type_11,quarters_1,quarters_2,quarters_3,quarters_4,type_id_1,type_id_2,type_id_3,house_type_1,house_type_2,house_type_3,house_type_4,flat_type_1,flat_type_2,flat_type_3,buildings,properties,lon,lat,area,normalize_price_m2,normalize_price,rooms,floor,bathrooms,additional_area_area,all_pois_count,all_pois_dist,shops_pois_count,shops_pois_dist,food_pois_count,food_pois_dist,education_pois_count,education_pois_dist,health_pois_count,health_pois_dist,entertainment_pois_count,entertainment_pois_dist,sport_pois_count,sport_pois_dist,transport_pois_count,transport_pois_dist
+2026-03-05 23:31:29.212 | WARNING  | src.v2.api.services.embed_properties:_align_feature_columns:79 - Dropping extra columns not expected (7): additional_area_type_5,additional_area_type_6,additional_area_type_7,additional_area_type_8,additional_area_type_9,additional_area_type_10,additional_area_type_11
+2026-03-05 23:31:29.212 | INFO     | src.v2.api.services.embed_properties:_align_feature_columns:93 - Aligned feature columns to 91 (dropped: 7, added: 0)
+2026-03-05 23:31:29.213 | DEBUG    | src.v2.api.services.embed_properties:_load_model:15 - Loading model from ../../../../models/epoch=34-val_loss=0.0858.ckpt
+2026-03-05 23:31:29.213 | DEBUG    | src.v2.autoencoder.properties_embedding_model:load_from_checkpoint:61 - Using local model checkpoint at ../../../../models/epoch=34-val_loss=0.0858.ckpt
+2026-03-05 23:31:38.701 | INFO     | src.v2.api.services.embed_properties:_align_feature_columns:68 - Provided feature columns (98): facilities_1,facilities_2,facilities_3,facilities_4,facilities_5,facilities_6,facilities_7,facilities_8,facilities_9,facilities_10,facilities_11,facilities_12,facilities_13,facilities_14,facilities_15,facilities_16,facilities_17,facilities_18,facilities_19,facilities_20,facilities_21,facilities_22,facilities_23,facilities_24,facilities_25,facilities_26,facilities_27,facilities_28,facilities_29,facilities_30,facilities_31,facilities_32,facilities_33,facilities_34,facilities_35,natural_sites_1,natural_sites_2,natural_sites_3,natural_sites_4,natural_sites_5,natural_sites_6,natural_sites_7,natural_sites_8,natural_sites_9,kitchen_type_1,kitchen_type_2,additional_area_type_1,additional_area_type_2,additional_area_type_3,additional_area_type_4,additional_area_type_5,additional_area_type_6,additional_area_type_7,additional_area_type_8,additional_area_type_9,additional_area_type_10,additional_area_type_11,quarters_1,quarters_2,quarters_3,quarters_4,type_id_1,type_id_2,type_id_3,house_type_1,house_type_2,house_type_3,house_type_4,flat_type_1,flat_type_2,flat_type_3,buildings,properties,lon,lat,area,normalize_price_m2,normalize_price,rooms,floor,bathrooms,additional_area_area,all_pois_count,all_pois_dist,shops_pois_count,shops_pois_dist,food_pois_count,food_pois_dist,education_pois_count,education_pois_dist,health_pois_count,health_pois_dist,entertainment_pois_count,entertainment_pois_dist,sport_pois_count,sport_pois_dist,transport_pois_count,transport_pois_dist
+2026-03-05 23:31:38.701 | WARNING  | src.v2.api.services.embed_properties:_align_feature_columns:79 - Dropping extra columns not expected (7): additional_area_type_5,additional_area_type_6,additional_area_type_7,additional_area_type_8,additional_area_type_9,additional_area_type_10,additional_area_type_11
+2026-03-05 23:31:38.701 | INFO     | src.v2.api.services.embed_properties:_align_feature_columns:93 - Aligned feature columns to 91 (dropped: 7, added: 0)
+2026-03-05 23:31:47.910 | INFO     | src.v2.api.services.get_scores:get_scores_df:107 - Embedded leads properties and scoring properties
+2026-03-05 23:31:47.916 | INFO     | src.v2.api.services.get_scores:get_scores_df:115 - Calculated scores
+2026-03-05 23:31:47.918 | WARNING  | __main__:get_scores_with_explanations:100 - No valid scores; returning empty list.
+2026-03-05 23:31:47.919 | INFO     | __main__:<module>:191 - XAI scoring completed; results saved to xai_explanations.json
